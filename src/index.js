@@ -30,6 +30,8 @@ function* fetchPoster() {
     }
 }
 
+//used to get the movie details
+
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
     switch (action.type) {
@@ -50,11 +52,19 @@ const genres = (state = [], action) => {
     }
 }
 
+const movieToDetail = (state = [], action) => {
+    if (action.type === 'GET_DETAILS') {
+        return action.payload;
+    }
+    return state;
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        movieToDetail
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
