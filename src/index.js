@@ -9,14 +9,26 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
+import {takeEvery, put} from 'redux-saga/effects';
+import Axios from 'axios'
 
 // Create the rootSaga generator function
 function* rootSaga() {
-
+    yield takeEvery('FETCH_POSTERS', fetchPoster);
 }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+//Used to make GET request for List page
+function* fetchPoster() {
+    try {
+        const response = yield Axios.get('/api/movie');
+        yield put({type: 'SET_MOVIES', payload: response.data})
+    } catch (error) {
+        console.log('error getting movie posters', error)
+    }
+}
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
