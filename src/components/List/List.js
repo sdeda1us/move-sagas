@@ -8,7 +8,12 @@ class List extends Component {
 
     render() {
         return(
-            <p>Hi from List</p>
+            <div>
+                <ul>
+                    {this.props.reduxState.movies.map(film => 
+                    <li key={film.id}>{film.title} <img src={film.poster}></img></li>)}
+                </ul>
+            </div>
         )
     }
 }
