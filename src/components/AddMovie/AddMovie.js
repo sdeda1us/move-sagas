@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 
 class AddMovie extends Component {
     
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log('in handleSubmit');
+    }
+
     render() {
         return(
             <div>
                 <h3>Add a movie</h3>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <label>Movie Name</label>
                     <input type="text" />
                     <label>Movie Poster URL</label>
@@ -31,6 +36,8 @@ class AddMovie extends Component {
                         <option value="12">Space-Opera</option>
                         <option value="13">Superhero</option>
                     </select>
+                    <button type="submit">Save</button>
+                    <button onClick={(event)=> this.props.history.push('/')}>Cancel</button>
                 </form>
             </div>
         )

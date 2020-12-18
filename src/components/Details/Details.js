@@ -9,7 +9,10 @@ class Details extends Component {
             <div>
                 <h2>{this.props.reduxState.movieToDetail.title}</h2>
                 <img src={this.props.reduxState.movieToDetail.poster}/>
-                <p>Categories: </p>
+                <p>Genres</p>
+                <ul>
+                    {this.props.reduxState.genres.map(type => <li>{type.name}</li>)}
+                </ul>
                 <p>Details: {this.props.reduxState.movieToDetail.description}</p>
                 <button onClick={(event) => this.props.history.push('/')}>Back to List</button>
             </div>
