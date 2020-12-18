@@ -14,23 +14,32 @@ import Axios from 'axios'
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('FETCH_POSTERS', fetchPoster);
+    yield takeEvery('FETCH_POSTERS', fetchPosters);
+    yield takeEvery('FETCH_GENRES', fetchGenres);
 }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
 //Used to make GET request for List page
-function* fetchPoster() {
+function* fetchPosters() {
     try {
         const response = yield Axios.get('/api/movie');
         yield put({type: 'SET_MOVIES', payload: response.data})
     } catch (error) {
-        console.log('error getting movie posters', error)
+        console.log('error getting movie posters', error);
+    }
+};
+
+function* fetchGenres(action) {
+    try {
+        const response = yield Axios.get('/api/genre/' + action.payload);
+        yield put({type: 'SET_GENRES', payload: response.data})
+    } catch (error) {
+        console.log('error getting genres', error)
     }
 }
 
-//used to get the movie details
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {

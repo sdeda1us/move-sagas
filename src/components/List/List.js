@@ -8,6 +8,7 @@ class List extends Component {
 
     handleClick(film) {
         this.props.dispatch({type: 'GET_DETAILS', payload: film})
+        this.props.dispatch({type:'FETCH_GENRES', payload: film.id})
         this.props.history.push('/details');
     }
 
