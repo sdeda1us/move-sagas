@@ -14,6 +14,8 @@ class AddMovie extends Component {
             genre: this.props.reduxState.setGenre
         }
         this.props.dispatch({type:'POST_MOVIE', payload: newMovie});
+        this.props.dispatch({type: 'CLEAR_FORMDATA'});
+        this.props.history.push('/');
     }
 
     render() {
@@ -47,7 +49,10 @@ class AddMovie extends Component {
                         <option value="13">Superhero</option>
                     </select>
                     <button type="submit">Save</button>
-                    <button onClick={(event)=> this.props.history.push('/')}>Cancel</button>
+                    <button onClick={(event)=> {this.props.dispatch({type: 'CLEAR_FORM_DATA'}); 
+                                                this.props.history.push('/')}}>
+                                                Cancel
+                                                </button>
                 </form>
             </div>
         )
