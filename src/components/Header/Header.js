@@ -4,7 +4,9 @@ class Header extends Component {
     
     render() {
         return(
-            <p>Hi from Header</p>
+            <div className="App-header">
+                <h1>Movie Night!</h1>
+            </div>
         )
     }
 }

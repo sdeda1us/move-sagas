@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {HashRouter as Router, Route, Link} from 'react-router-dom';
 import './App.css';
+import '../../unsemantic-grid-tablet-no-ie7-rtl.css';
 import Header from '../Header/Header';
 import AddMovie from '../AddMovie/AddMovie';
 import Details from '../Details/Details';
@@ -10,23 +11,16 @@ class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
-      <div className="App">
-        <h1>Movies!</h1>
+      <div className="grid-container">
         <Router>
           <Header />
-          <nav>
-            <ul>
-              <li>
+        <div className="grid-80">
+          <nav className="topnav">
                 <Link to='/'>Home</Link>
-              </li>
-              <li>
                 <Link to='/details'>Details</Link>
-              </li>
-              <li>
                 <Link to='/add-movie'>Add Movie</Link>
-              </li>
-            </ul>
           </nav>
+        </div>
           <Route exact path='/' component={List} />
           <Route path='/details' component={Details} />
           <Route path='/add-movie' component={AddMovie} />

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
+import '../App/App.css';
 
 
 class List extends Component {
@@ -20,19 +16,19 @@ class List extends Component {
 
     render() {
         return(
-                <CardDeck>
+                <div className="posterSpace">
                     {this.props.reduxState.movies.map(film => 
-                            <Card key={film.id} style = {{width: "20rem"}} border="secondary">
-                                <Card.Img variant="top"
+                            <div className="posterCard" key={film.id}>
+                                <img 
                                     style = {{width: "185px", height: "270px"}}
                                     src={film.poster}
                                     alt="movie poster" 
                                     onClick={(event)=> this.handleClick(film)}/>
-                                <Card.Title>{film.title}</Card.Title>
-                            </Card>
+                                <h4>{film.title}</h4>
+                            </div>
                         )
                     }
-                </CardDeck>
+                </div>
         )
     }
 }
