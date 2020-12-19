@@ -76,9 +76,12 @@ const movieToDetail = (state = [], action) => {
     return state;
 }
 
+//Reducers to hold form data to pass to db on submit
 const setTitle = (state='', action) => {
     if(action.type === 'SET_TITLE'){
         return action.payload;
+    }else if(action.type === 'CLEAR_FORMDATA') {
+        return '';
     }
     return state;
 }
@@ -86,6 +89,8 @@ const setTitle = (state='', action) => {
 const setURL = (state='', action) => {
     if(action.type === 'SET_URL'){
         return action.payload;
+    }else if(action.type === 'CLEAR_FORMDATA') {
+        return '';
     }
     return state;
 }
@@ -93,6 +98,8 @@ const setURL = (state='', action) => {
 const setDescription = (state='', action) => {
     if(action.type === 'SET_DESCRIPTION'){
         return action.payload;
+    }else if(action.type === 'CLEAR_FORMDATA') {
+        return '';
     }
     return state;
 }
@@ -100,6 +107,8 @@ const setDescription = (state='', action) => {
 const setGenre = (state='', action) => {
     if(action.type === 'SET_GENRE'){
         return action.payload;
+    }else if(action.type === 'CLEAR_FORMDATA') {
+        return '';
     }
     return state;
 }
