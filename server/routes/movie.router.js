@@ -5,7 +5,7 @@ const pool = require('../modules/pool')
 router.get('/', (req, res) => {
   const sqlText = `SELECT * FROM movies`;
   pool.query(sqlText)
-  .then(result => {console.log(result.rows); res.send(result.rows)})
+  .then(result => {res.send(result.rows)})
   .catch(error => {console.log('error retrieving posters', error)})
 })
 
@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
   RETURNING "id";`
 
   // FIRST QUERY MAKES MOVIE
-  pool.query(insertMovieQuery, [req.body.title, req.body.poster, req.body.description])
+  pool.query(insertMovieQuery, [req.body.title, req.body.url, req.body.description])
   .then(result => {
     console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
     
@@ -27,11 +27,11 @@ router.post('/', (req, res) => {
 
     // Depending on how you make your junction table, this insert COULD change.
     const insertMovieGenreQuery = `
-      INSERT INTO "movies_genres" ("movies_id", "genres_id")
+      INSERT INTO "movie_genres" ("movies_id", "genres_id")
       VALUES  ($1, $2);
       `
       // SECOND QUERY MAKES GENRE FOR THAT NEW MOVIE
-      pool.query(insertMovieGenreQuery, [createdMovieId, req.body.genre_id]).then(result => {
+      pool.query(insertMovieGenreQuery, [createdMovieId, req.body.genre]).then(result => {
         //Now that both are done, send back success!
         res.sendStatus(201);
       }).catch(err => {

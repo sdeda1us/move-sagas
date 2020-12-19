@@ -16,6 +16,7 @@ import Axios from 'axios'
 function* rootSaga() {
     yield takeEvery('FETCH_POSTERS', fetchPosters);
     yield takeEvery('FETCH_GENRES', fetchGenres);
+    yield takeEvery('POST_MOVIE', postMovies);
 }
 
 // Create sagaMiddleware
@@ -40,6 +41,13 @@ function* fetchGenres(action) {
     }
 }
 
+function* postMovies(action) {
+    try {
+    yield Axios.post('/api/movie', action.payload);
+    } catch (error) {
+        console.log('error posting new movie', error)
+    }
+}
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
@@ -68,12 +76,45 @@ const movieToDetail = (state = [], action) => {
     return state;
 }
 
+const setTitle = (state='', action) => {
+    if(action.type === 'SET_TITLE'){
+        return action.payload;
+    }
+    return state;
+}
+
+const setURL = (state='', action) => {
+    if(action.type === 'SET_URL'){
+        return action.payload;
+    }
+    return state;
+}
+
+const setDescription = (state='', action) => {
+    if(action.type === 'SET_DESCRIPTION'){
+        return action.payload;
+    }
+    return state;
+}
+
+const setGenre = (state='', action) => {
+    if(action.type === 'SET_GENRE'){
+        return action.payload;
+    }
+    return state;
+}
+
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        movieToDetail
+        movieToDetail,
+        setTitle,
+        setURL,
+        setDescription,
+        setGenre
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

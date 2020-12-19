@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class AddMovie extends Component {
     
-    handleSubmit(event) {
+    
+
+    handleSubmit = (event) => {
         event.preventDefault();
-        console.log('in handleSubmit');
+        let newMovie = {
+            title: this.props.reduxState.setTitle,
+            url: this.props.reduxState.setURL,
+            description: this.props.reduxState.setDescription,
+            genre: this.props.reduxState.setGenre
+        }
+        this.props.dispatch({type:'POST_MOVIE', payload: newMovie});
     }
 
     render() {
@@ -12,16 +21,17 @@ class AddMovie extends Component {
             <div>
                 <h3>Add a movie</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Movie Name</label>
-                    <input type="text" />
+                    <label>Movie Name</label>   
+                    <input type="text" onChange={(event) => this.props.dispatch({type:'SET_TITLE', payload: event.target.value})} />
                     <label>Movie Poster URL</label>
-                    <input type="text"/>
+                    <input type="text" onChange={(event) => this.props.dispatch({type:'SET_URL', payload: event.target.value})}/>
                     <label>Movie Description</label>
                     <br/>
-                    <textarea type="text" rows="6" columns="100"/>
+                    <textarea type="text" rows="6" columns="100" onChange={(event) => this.props.dispatch({type:'SET_DESCRIPTION', payload: event.target.value})}/>
                     <br/>
                     <label>Genre</label>
-                    <select name="genres">
+                    <select name="genres" onChange={(event) => this.props.dispatch({type:'SET_GENRE', payload: event.target.value})}>
+                        <option>Choose a genre</option>
                         <option value="1">Adventure</option>
                         <option value="2">Animated</option>
                         <option value="3">Biographical</option>
@@ -44,4 +54,8 @@ class AddMovie extends Component {
     }
 }
 
-export default AddMovie;
+const mapReduxStateToProps = (reduxState) => ({
+    reduxState
+  });
+
+export default connect(mapReduxStateToProps)(AddMovie);
