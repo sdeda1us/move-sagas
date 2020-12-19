@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
+
 
 class List extends Component {
     componentDidMount() {
@@ -14,12 +20,19 @@ class List extends Component {
 
     render() {
         return(
-            <div>
-                <ul>
+                <CardDeck>
                     {this.props.reduxState.movies.map(film => 
-                    <li key={film.id}>{film.title} <img src={film.poster} alt="movie poster" onClick={(event)=> this.handleClick(film)}></img></li>)}
-                </ul>
-            </div>
+                            <Card key={film.id} style = {{width: "20rem"}} border="secondary">
+                                <Card.Img variant="top"
+                                    style = {{width: "185px", height: "270px"}}
+                                    src={film.poster}
+                                    alt="movie poster" 
+                                    onClick={(event)=> this.handleClick(film)}/>
+                                <Card.Title>{film.title}</Card.Title>
+                            </Card>
+                        )
+                    }
+                </CardDeck>
         )
     }
 }
