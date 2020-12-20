@@ -9,7 +9,8 @@ class Details extends Component {
             <div id="detail-backing">
                 <p id="title-text">{this.props.reduxState.movieToDetail.title}</p>
                 <div className="detailSpace">
-                    <img src={this.props.reduxState.movieToDetail.poster}/>
+                    <img src={this.props.reduxState.movieToDetail.poster} 
+                                style = {{width: "185px", height: "270px"}}/>
                     <div id="genre-list">
                         <p>Genres</p>
                         <ul>
