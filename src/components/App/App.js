@@ -6,15 +6,16 @@ import Header from '../Header/Header';
 import AddMovie from '../AddMovie/AddMovie';
 import Details from '../Details/Details';
 import List from '../List/List';
+import Footer from '../Footer/Footer';
 
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
-      <div className="grid-container">
+      <div className="App">
         <Router>
           <Header />
-        <div className="grid-80">
+        <div>
           <nav className="topnav">
                 <Link to='/'>Home</Link>
                 <Link to='/details'>Details</Link>
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path='/details' component={Details} />
           <Route path='/add-movie' component={AddMovie} />
         </Router>
+        <Footer/>
       </div>
     );
   }

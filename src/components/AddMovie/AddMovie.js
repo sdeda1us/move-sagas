@@ -21,10 +21,13 @@ class AddMovie extends Component {
     render() {
         return(
             <div>
-                <h3>Add a movie</h3>
+                
                 
                 <form onSubmit={this.handleSubmit}>
                     <div className="flexContainer">
+                        <div id="ticket-stub">
+                            <h3>Add a movie</h3>
+                        </div>
                     <div className="formSpace">
                         <div className="textForm">
                             <label>Movie Name: </label>   
@@ -60,8 +63,8 @@ class AddMovie extends Component {
                     </div>
                     </div>
                     <div>
-                    <button type="submit">Save</button>
-                    <button onClick={(event)=> {this.props.dispatch({type: 'CLEAR_FORM_DATA'}); 
+                    <button className="saveButton" type="submit">Save</button>
+                    <button className="cancelButton" onClick={(event)=> {this.props.dispatch({type: 'CLEAR_FORM_DATA'}); 
                                                 this.props.history.push('/')}}>
                                                 Cancel
                                                 </button>
