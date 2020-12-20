@@ -6,7 +6,6 @@ class Footer extends Component {
         return(
             <div className="footer-style">
                 <p>"Fancy, Old Fashioned Theater Seats" by BenjaminThompson is licensed under CC BY-NC-ND 2.0</p>
-                <p>"Movie Popcorn 4292 B" by jim.choate59 is licensed under CC BY-NC-ND 2.0</p>
             </div>
         )
     }
