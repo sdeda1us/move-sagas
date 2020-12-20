@@ -6,20 +6,25 @@ class Details extends Component {
 
     render() {
         return(
-            <div id="detail-backing">
+            <div className="backing">
                 <p id="title-text">{this.props.reduxState.movieToDetail.title}</p>
-                <div className="detailSpace">
+                <div className="detail-space">
                     <img src={this.props.reduxState.movieToDetail.poster} 
-                                style = {{width: "185px", height: "270px"}}/>
-                    <div id="genre-list">
-                        <p>Genres</p>
+                                style = {{width: "185px", height: "270px"}}
+                                alt="movie poster"/>
+                    <div className="oswald-font">
+                        <p className="red-text">Genres</p>
                         <ul>
+                            {/* Maps over each genre that matches the movie in the joined returned SQL data */}
                             {this.props.reduxState.genres.map(type => <li>{type.name}</li>)}
                         </ul>
                     </div>
                     <div id="description-text">
                         <p> {this.props.reduxState.movieToDetail.description}</p>
-                        <button className="returnButton" onClick={(event) => this.props.history.push('/')}>Back to List</button>
+                    </div>
+                    <div calssName="button-flex-row">
+                        <button className="edit-button" onClick={()=> this.props.history.push('/edit')}>Edit</button>
+                        <button className="return-button" onClick={(event) => this.props.history.push('/')}>Back to List</button>
                     </div>
                 </div>
             </div>
@@ -27,6 +32,7 @@ class Details extends Component {
     }
 }
 
+//loads redux state
 const mapReduxStateToProps = (reduxState) => ({
     reduxState
   });

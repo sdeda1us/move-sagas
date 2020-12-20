@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 class AddMovie extends Component {
     
     
-
+//On form submit, creates an object out of input reducers 
+//and dispatches payload to bbe added to the db
+//also clears the values in the input fields and navigates user back to the main page
     handleSubmit = (event) => {
         event.preventDefault();
         let newMovie = {
@@ -21,8 +23,6 @@ class AddMovie extends Component {
     render() {
         return(
             <div>
-                
-                
                 <form onSubmit={this.handleSubmit}>
                     <div className="flexContainer">
                         <div id="ticket-stub">
@@ -34,15 +34,15 @@ class AddMovie extends Component {
                             <input className="inputStyle" type="text" onChange={(event) => this.props.dispatch({type:'SET_TITLE', payload: event.target.value})} />
                         </div>
                         <div className="textForm">
-                            <label>Movie Poster URL: </label>
+                            <label>Poster URL: </label>
                             <input type="text" onChange={(event) => this.props.dispatch({type:'SET_URL', payload: event.target.value})}/>
                         </div>
                         <div className="textForm">
                             <label>Movie Description: </label>
                         </div>
-                        <textarea type="text" rows="6" cols="50" onChange={(event) => this.props.dispatch({type:'SET_DESCRIPTION', payload: event.target.value})}/>
+                        <textarea type="text" className="description-textarea" onChange={(event) => this.props.dispatch({type:'SET_DESCRIPTION', payload: event.target.value})}/>
                     </div>
-                    <div clasName="formSpace">
+                    <div clasName="form-space">
                     <label>Genre</label>
                         <select name="genres" onChange={(event) => this.props.dispatch({type:'SET_GENRE', payload: event.target.value})}>
                             <option>Choose a genre</option>
@@ -62,12 +62,12 @@ class AddMovie extends Component {
                         </select>
                     </div>
                     </div>
-                    <div>
-                    <button className="saveButton" type="submit">Save</button>
-                    <button className="cancelButton" onClick={(event)=> {this.props.dispatch({type: 'CLEAR_FORM_DATA'}); 
-                                                this.props.history.push('/')}}>
-                                                Cancel
-                                                </button>
+                    <div className="button-flex-row">
+                        <button className="save-button" type="submit">Save</button>
+                        <button className="cancel-button" onClick={(event)=> {this.props.dispatch({type: 'CLEAR_FORM_DATA'}); 
+                                                    this.props.history.push('/')}}>
+                                                    Cancel
+                                                    </button>
                     </div>
                 </form>
             </div>
@@ -75,6 +75,7 @@ class AddMovie extends Component {
     }
 }
 
+//loads redux state
 const mapReduxStateToProps = (reduxState) => ({
     reduxState
   });

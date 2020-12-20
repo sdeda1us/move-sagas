@@ -22,7 +22,7 @@ function* rootSaga() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-//Used to make GET request for List page
+//Makes GET request for movie route
 function* fetchPosters() {
     try {
         const response = yield Axios.get('/api/movie');
@@ -32,6 +32,7 @@ function* fetchPosters() {
     }
 };
 
+//Makes GET request for Genre route
 function* fetchGenres(action) {
     try {
         const response = yield Axios.get('/api/genre/' + action.payload);
@@ -41,6 +42,7 @@ function* fetchGenres(action) {
     }
 }
 
+//makes POST request to movie route
 function* postMovies(action) {
     try {
     yield Axios.post('/api/movie', action.payload);
@@ -49,7 +51,7 @@ function* postMovies(action) {
     }
 }
 
-// Used to store movies returned from the server
+// Used to store movies returned from the server in redux
 const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
@@ -59,7 +61,7 @@ const movies = (state = [], action) => {
     }
 }
 
-// Used to store the movie genres
+// Used to store the movie genres from the server in redux
 const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
@@ -69,6 +71,7 @@ const genres = (state = [], action) => {
     }
 }
 
+// Used to store specific movie to detail in details page in the redux state
 const movieToDetail = (state = [], action) => {
     if (action.type === 'GET_DETAILS') {
         return action.payload;

@@ -8,6 +8,7 @@ class List extends Component {
         this.props.dispatch({type: 'FETCH_POSTERS'});
     }
 
+    // On poster click, fills redux state with values and routes to details page
     handleClick(film) {
         this.props.dispatch({type: 'GET_DETAILS', payload: film})
         this.props.dispatch({type:'FETCH_GENRES', payload: film.id})
@@ -16,9 +17,9 @@ class List extends Component {
 
     render() {
         return(
-                <div className="posterSpace">
+                <div className="poster-space">
                     {this.props.reduxState.movies.map(film => 
-                            <div className="posterCard" key={film.id}>
+                            <div className="poster-card" key={film.id}>
                                 <img 
                                     style = {{width: "185px", height: "270px"}}
                                     src={film.poster}
@@ -33,6 +34,7 @@ class List extends Component {
     }
 }
 
+//loads redux state
 const mapReduxStateToProps = (reduxState) => ({
     reduxState
   });
