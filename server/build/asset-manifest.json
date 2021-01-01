@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c15c048f.chunk.css",
+    "main.js": "/static/js/main.e85b423f.chunk.js",
+    "main.js.map": "/static/js/main.e85b423f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.52009e65.js",
+    "runtime-main.js.map": "/static/js/runtime-main.52009e65.js.map",
+    "static/js/2.33e82617.chunk.js": "/static/js/2.33e82617.chunk.js",
+    "static/js/2.33e82617.chunk.js.map": "/static/js/2.33e82617.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.399b26d4dc36aaac2f148ff400ab570c.js": "/precache-manifest.399b26d4dc36aaac2f148ff400ab570c.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.c15c048f.chunk.css.map": "/static/css/main.c15c048f.chunk.css.map",
+    "static/js/2.33e82617.chunk.js.LICENSE.txt": "/static/js/2.33e82617.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/movie_seats.165950f4.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.52009e65.js",
+    "static/js/2.33e82617.chunk.js",
+    "static/css/main.c15c048f.chunk.css",
+    "static/js/main.e85b423f.chunk.js"
+  ]
+}
